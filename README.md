@@ -324,3 +324,8 @@ Use the protocol to improve the structure and inspectability of research work, t
 Discovery Protocol + Abstractor of Abstractors  
 Developed by **[Cognous](https://cogno.us)**  
 Research infrastructure for evidence acquisition, structural abstraction, and cross-domain transfer.
+
+## License
+
+Cognous-owned original material is licensed under [Apache 2.0](LICENSE).
+See [NOTICE](NOTICE) for attribution and third-party scope. Prior license grants remain valid.
