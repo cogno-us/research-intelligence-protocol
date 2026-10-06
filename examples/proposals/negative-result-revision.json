@@ -1,0 +1,57 @@
+{
+  "profile_version": "research-intelligence-proposal/1.0",
+  "proposal_id": "rip:proposal:v1:fixture:negative-result-revision",
+  "component_origin": "discovery",
+  "proposal_kind": "hypothesis",
+  "handoff_state": "proposed_unaccepted",
+  "epistemic_mode": "candidate",
+  "statement": {
+    "text": "Cache pressure alone is insufficient to reproduce the synthetic service failure."
+  },
+  "sources": [
+    {
+      "source_ref": "synthetic://fixture/experiment-cache-pressure-1",
+      "passage": "Raising cache pressure under fixed request volume did not reproduce the failure.",
+      "role": "primary"
+    }
+  ],
+  "uncertainty": {
+    "status": "stated",
+    "description": "The result weakens the prior single-factor hypothesis but does not identify the true mechanism."
+  },
+  "assumptions": [
+    "The synthetic manipulation materially changed cache pressure and measurement was functioning."
+  ],
+  "competing_hypotheses": [
+    "Failure requires interaction between cache pressure and request volume.",
+    "Another variable explains both observed cache pressure and failure."
+  ],
+  "contradictory_evidence": [],
+  "experiment": {
+    "status": "executed",
+    "description": "Increase cache pressure while holding request volume constant.",
+    "result_status": "reported",
+    "results": [
+      {
+        "result": "No service failure occurred during the synthetic test.",
+        "direction": "negative"
+      }
+    ]
+  },
+  "abstraction": null,
+  "lineage": {
+    "derived_from": [
+      "synthetic://fixture/experiment-cache-pressure-1"
+    ],
+    "revises": [
+      "rip:proposal:v1:fixture:cache-pressure-alone"
+    ],
+    "supersedes": []
+  },
+  "missing_information": [
+    {
+      "field": "causal_mechanism",
+      "reason": "The negative result rejects sufficiency but does not identify the remaining causal mechanism."
+    }
+  ]
+}

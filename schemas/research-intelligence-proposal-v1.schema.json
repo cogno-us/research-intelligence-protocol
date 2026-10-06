@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/cogno-us/research-intelligence-protocol/schemas/research-intelligence-proposal-v1.schema.json",
+  "title": "Research Intelligence Proposal Handoff",
+  "description": "Optional unaccepted proposal representation for Discovery and Abstractor of Abstractors outputs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version", "proposal_id", "component_origin", "proposal_kind",
+    "handoff_state", "epistemic_mode", "statement", "sources", "uncertainty",
+    "assumptions", "competing_hypotheses", "contradictory_evidence",
+    "experiment", "abstraction", "lineage", "missing_information"
+  ],
+  "properties": {
+    "profile_version": {"const": "research-intelligence-proposal/1.0"},
+    "proposal_id": {"type": "string", "minLength": 1},
+    "component_origin": {"enum": ["discovery", "aoa"]},
+    "proposal_kind": {"enum": ["observation", "hypothesis", "experiment", "pattern", "abstraction", "transfer_hypothesis"]},
+    "handoff_state": {"const": "proposed_unaccepted"},
+    "epistemic_mode": {"enum": ["observed", "inferred", "derived", "candidate", "supported", "speculative", "rejected"]},
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {"text": {"type": "string", "minLength": 1}}
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_ref", "passage", "role"],
+        "properties": {
+          "source_ref": {"type": ["string", "null"]},
+          "passage": {"type": ["string", "null"]},
+          "role": {"enum": ["primary", "supporting", "contradicting", "context", "derived_from"]}
+        }
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "description"],
+      "properties": {
+        "status": {"enum": ["stated", "unknown", "not_applicable"]},
+        "description": {"type": ["string", "null"]}
+      }
+    },
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "competing_hypotheses": {"type": "array", "items": {"type": "string"}},
+    "contradictory_evidence": {"type": "array", "items": {"type": "string"}},
+    "experiment": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["status", "description", "result_status", "results"],
+      "properties": {
+        "status": {"enum": ["proposed", "executed", "unexecuted"]},
+        "description": {"type": "string", "minLength": 1},
+        "result_status": {"enum": ["none", "reported", "unavailable"]},
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["result", "direction"],
+            "properties": {
+              "result": {"type": "string", "minLength": 1},
+              "direction": {"enum": ["positive", "negative", "mixed", "neutral"]}
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"enum": ["proposed", "unexecuted"]}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "result_status": {"const": "none"},
+              "results": {"maxItems": 0}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "executed"}, "result_status": {"const": "reported"}}, "required": ["status", "result_status"]},
+          "then": {"properties": {"results": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"status": {"const": "executed"}, "result_status": {"const": "unavailable"}}, "required": ["status", "result_status"]},
+          "then": {"properties": {"results": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"status": {"const": "executed"}}, "required": ["status"]},
+          "then": {"properties": {"result_status": {"enum": ["reported", "unavailable"]}}}
+        }
+      ]
+    },
+    "abstraction": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["abstraction_level", "source_domain", "target_domain", "transfer_assumptions", "transfer_limits", "counterexamples", "disposition"],
+      "properties": {
+        "abstraction_level": {"type": ["string", "null"], "enum": ["E0", "E1", "E2", "E3", "E4", "E5", null]},
+        "source_domain": {"type": ["string", "null"]},
+        "target_domain": {"type": ["string", "null"]},
+        "transfer_assumptions": {"type": "array", "items": {"type": "string"}},
+        "transfer_limits": {"type": "array", "items": {"type": "string"}},
+        "counterexamples": {"type": "array", "items": {"type": "string"}},
+        "disposition": {"enum": ["candidate", "supported", "rejected", "not_applicable"]}
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["derived_from", "revises", "supersedes"],
+      "properties": {
+        "derived_from": {"type": "array", "items": {"type": "string"}},
+        "revises": {"type": "array", "items": {"type": "string"}},
+        "supersedes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "reason"],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"component_origin": {"const": "discovery"}}, "required": ["component_origin"]},
+      "then": {
+        "properties": {
+          "proposal_kind": {"enum": ["observation", "hypothesis", "experiment"]},
+          "abstraction": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"component_origin": {"const": "aoa"}}, "required": ["component_origin"]},
+      "then": {"properties": {"proposal_kind": {"enum": ["pattern", "abstraction", "transfer_hypothesis"]}}}
+    },
+    {
+      "if": {"properties": {"proposal_kind": {"const": "experiment"}}, "required": ["proposal_kind"]},
+      "then": {"properties": {"experiment": {"type": "object"}}}
+    },
+    {
+      "if": {"properties": {"component_origin": {"const": "aoa"}, "proposal_kind": {"enum": ["abstraction", "transfer_hypothesis"]}}, "required": ["component_origin", "proposal_kind"]},
+      "then": {"properties": {"abstraction": {"type": "object"}}}
+    }
+  ]
+}

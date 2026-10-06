@@ -202,11 +202,28 @@ research-intelligence-protocol/
 ├── SKILL.md
 ├── README.md
 ├── INSTALLATION.md
+├── CHANGELOG.md
 ├── agents/
 │   └── openai.yaml
-└── references/
-    ├── discovery-protocol.md
-    └── abstractor-of-abstractors.md
+├── references/
+│   ├── discovery-protocol.md
+│   └── abstractor-of-abstractors.md
+├── docs/
+│   └── INDEX_HANDOFF_PROFILE.md
+├── schemas/
+│   └── research-intelligence-proposal-v1.schema.json
+├── examples/
+│   └── proposals/
+├── evaluations/
+│   └── README.md
+├── scripts/
+│   └── validate_proposals.py
+├── tests/
+│   └── test_proposal_validation.py
+├── requirements-dev.txt
+└── .github/
+    └── workflows/
+        └── proposal-validation.yml
 ```
 
 `SKILL.md` is the runtime control plane. The two protocols remain separate reference components and are loaded only when relevant.
@@ -317,6 +334,34 @@ A useful benchmark should test whether the protocol changes research quality, no
 Model behavior can vary with model version, host instructions, available tools, retrieval quality, context, and decoding behavior. A protocol can discipline reasoning but cannot certify that a model output is true.
 
 Use the protocol to improve the structure and inspectability of research work, then verify consequential claims against appropriate evidence.
+
+
+## Optional downstream proposal handoff
+
+Research Intelligence remains standalone. When a user or downstream system explicitly needs a traceable export, outputs may be represented with the optional **Research Intelligence → Index Proposal Handoff Profile v1.0**.
+
+See **[docs/INDEX_HANDOFF_PROFILE.md](docs/INDEX_HANDOFF_PROFILE.md)**.
+
+The profile preserves source references, uncertainty, competing hypotheses, contradictory evidence, experiment execution status and actual results, abstraction/transfer limits, lineage, and explicit missing information. Every exported object remains `proposed_unaccepted`.
+
+The profile does **not** make The Index a dependency, does not submit blockchain transactions, and does not treat signatures, commitments, or Research Intelligence support labels as factual truth or recipient acceptance.
+
+Machine-readable contract and fixtures:
+
+- [schemas/research-intelligence-proposal-v1.schema.json](schemas/research-intelligence-proposal-v1.schema.json)
+- [examples/proposals/](examples/proposals/)
+- [evaluations/README.md](evaluations/README.md)
+
+Static validation and regressions:
+
+```bash
+python -m pip install -r requirements-dev.txt
+python scripts/validate_proposals.py
+python -m unittest discover -s tests -v
+```
+
+Validation applies the Draft 7 JSON Schema to every published fixture and then applies cross-field semantic rules. CI runs the same commands on pull requests and the workstream branch. These checks establish contract consistency only; they are not behavioral evaluations of the protocols.
+
 
 ---
 

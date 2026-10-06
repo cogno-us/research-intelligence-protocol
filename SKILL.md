@@ -125,6 +125,23 @@ When moving from Discovery to AoA, pass forward:
 
 AoA must treat this as its source evidence, not as permission to infer missing observations.
 
+
+## Optional external proposal handoff
+
+Only when the user explicitly requests a machine-readable research handoff or downstream claim/evidence proposal, read [docs/INDEX_HANDOFF_PROFILE.md](docs/INDEX_HANDOFF_PROFILE.md).
+
+Keep this export optional. Do not require The Index or any wider stack to use Discovery or AoA.
+
+For every exported proposal:
+
+- retain the originating component;
+- keep Discovery output distinct from AoA-derived abstractions;
+- preserve source references, contradictory and negative evidence, uncertainty, assumptions, experiment execution state, and lineage when available;
+- mark missing information explicitly instead of inventing it;
+- keep the recipient state `proposed_unaccepted`;
+- never treat serialization, hashing, signing, blockchain inclusion, or local Research Intelligence support as factual verification, institutional authority, or execution permission.
+
+
 ## Final quality check
 
 Before finalizing, confirm:

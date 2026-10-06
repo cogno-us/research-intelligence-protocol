@@ -1,0 +1,53 @@
+{
+  "profile_version": "research-intelligence-proposal/1.0",
+  "proposal_id": "rip:proposal:v1:fixture:contradictory-evidence",
+  "component_origin": "discovery",
+  "proposal_kind": "hypothesis",
+  "handoff_state": "proposed_unaccepted",
+  "epistemic_mode": "candidate",
+  "statement": {
+    "text": "Peak request volume is the sole cause of the synthetic service failure."
+  },
+  "sources": [
+    {
+      "source_ref": "synthetic://fixture/run-1",
+      "passage": "Failure occurred during a high-volume interval.",
+      "role": "supporting"
+    },
+    {
+      "source_ref": "synthetic://fixture/run-2",
+      "passage": "A high-volume interval completed without failure.",
+      "role": "contradicting"
+    }
+  ],
+  "uncertainty": {
+    "status": "stated",
+    "description": "Request volume may interact with another unmeasured variable."
+  },
+  "assumptions": [
+    "The two synthetic runs used comparable instrumentation."
+  ],
+  "competing_hypotheses": [
+    "Failure requires both high volume and a second latent condition.",
+    "Failure is independent of request volume."
+  ],
+  "contradictory_evidence": [
+    "High volume occurred without failure in run-2."
+  ],
+  "experiment": null,
+  "abstraction": null,
+  "lineage": {
+    "derived_from": [
+      "synthetic://fixture/run-1",
+      "synthetic://fixture/run-2"
+    ],
+    "revises": [],
+    "supersedes": []
+  },
+  "missing_information": [
+    {
+      "field": "latent_condition",
+      "reason": "No measurement for the possible interacting variable is present in the fixture."
+    }
+  ]
+}

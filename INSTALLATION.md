@@ -21,14 +21,27 @@ research-intelligence-protocol/
 ├── SKILL.md
 ├── README.md
 ├── INSTALLATION.md
+├── CHANGELOG.md
 ├── agents/
 │   └── openai.yaml
-└── references/
-    ├── discovery-protocol.md
-    └── abstractor-of-abstractors.md
+├── references/
+│   ├── discovery-protocol.md
+│   └── abstractor-of-abstractors.md
+├── docs/
+│   └── INDEX_HANDOFF_PROFILE.md
+├── schemas/
+│   └── research-intelligence-proposal-v1.schema.json
+├── examples/
+│   └── proposals/
+├── evaluations/
+│   └── README.md
+└── scripts/
+    └── validate_proposals.py
 ```
 
 Do not merge the two reference files. The Skill relies on progressive loading so that Discovery and AoA remain distinct components.
+
+The `docs/`, `schemas/`, `examples/`, `evaluations/`, and `scripts/` paths are additive support material for the optional proposal handoff and its validation. They do not make The Index or any wider Cognous stack component a runtime dependency.
 
 ---
 

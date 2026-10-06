@@ -1,0 +1,60 @@
+{
+  "profile_version": "research-intelligence-proposal/1.0",
+  "proposal_id": "rip:proposal:v1:fixture:supported-unaccepted",
+  "component_origin": "aoa",
+  "proposal_kind": "abstraction",
+  "handoff_state": "proposed_unaccepted",
+  "epistemic_mode": "supported",
+  "statement": {
+    "text": "Across the supplied synthetic systems, preserving explicit dependency edges is necessary to reconstruct the tested transformation order."
+  },
+  "sources": [
+    {
+      "source_ref": "synthetic://fixture/system-C",
+      "passage": "Removing dependency edges prevented reconstruction of the original transformation order.",
+      "role": "supporting"
+    },
+    {
+      "source_ref": "synthetic://fixture/system-D",
+      "passage": "Dependency edges were sufficient to preserve the tested ordering constraints in the supplied case.",
+      "role": "supporting"
+    }
+  ],
+  "uncertainty": {
+    "status": "stated",
+    "description": "Support is limited to the supplied synthetic systems and tested transformations."
+  },
+  "assumptions": [
+    "The supplied systems are represented completely with respect to the tested ordering relation."
+  ],
+  "competing_hypotheses": [
+    "A weaker partial-order representation may be sufficient in untested systems."
+  ],
+  "contradictory_evidence": [],
+  "experiment": null,
+  "abstraction": {
+    "abstraction_level": "E1",
+    "source_domain": "synthetic transformation graphs",
+    "target_domain": null,
+    "transfer_assumptions": [],
+    "transfer_limits": [
+      "No target-domain transfer has been tested."
+    ],
+    "counterexamples": [],
+    "disposition": "supported"
+  },
+  "lineage": {
+    "derived_from": [
+      "synthetic://fixture/system-C",
+      "synthetic://fixture/system-D"
+    ],
+    "revises": [],
+    "supersedes": []
+  },
+  "missing_information": [
+    {
+      "field": "abstraction.target_domain",
+      "reason": "No target-domain transfer is proposed in this fixture."
+    }
+  ]
+}
