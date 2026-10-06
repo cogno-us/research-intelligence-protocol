@@ -202,11 +202,22 @@ research-intelligence-protocol/
 ├── SKILL.md
 ├── README.md
 ├── INSTALLATION.md
+├── CHANGELOG.md
 ├── agents/
 │   └── openai.yaml
-└── references/
-    ├── discovery-protocol.md
-    └── abstractor-of-abstractors.md
+├── references/
+│   ├── discovery-protocol.md
+│   └── abstractor-of-abstractors.md
+├── docs/
+│   └── INDEX_HANDOFF_PROFILE.md
+├── schemas/
+│   └── research-intelligence-proposal-v1.schema.json
+├── examples/
+│   └── proposals/
+├── evaluations/
+│   └── README.md
+└── scripts/
+    └── validate_proposals.py
 ```
 
 `SKILL.md` is the runtime control plane. The two protocols remain separate reference components and are loaded only when relevant.
