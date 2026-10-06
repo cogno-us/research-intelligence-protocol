@@ -47,6 +47,17 @@ Required top-level semantics include:
 
 Missing information is represented in `missing_information`. Do not synthesize identifiers, confidence values, experiments, passages, verification status, or results merely to populate the profile.
 
+### 2.1 Experiment result availability
+
+Experiment metadata distinguishes execution from result availability:
+
+- `proposed` or `unexecuted`: `result_status` MUST be `none` and `results` MUST be empty. Findings are prohibited.
+- `executed` with available results: `result_status` MUST be `reported` and at least one actual result MUST be present.
+- `executed` with unavailable results: `result_status` MUST be `unavailable`, `results` MUST be empty, and `missing_information` MUST contain an entry whose `field` is `experiment.results` explaining why the result is unavailable.
+
+Execution status alone never licenses invention of findings. If an experiment is known to have run but the result artifact is missing, preserve that absence explicitly rather than fabricating a positive, negative, neutral, or mixed result.
+
+
 ## 3. Component-origin rules
 
 ### 3.1 Discovery exports

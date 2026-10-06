@@ -216,8 +216,14 @@ research-intelligence-protocol/
 │   └── proposals/
 ├── evaluations/
 │   └── README.md
-└── scripts/
-    └── validate_proposals.py
+├── scripts/
+│   └── validate_proposals.py
+├── tests/
+│   └── test_proposal_validation.py
+├── requirements-dev.txt
+└── .github/
+    └── workflows/
+        └── proposal-validation.yml
 ```
 
 `SKILL.md` is the runtime control plane. The two protocols remain separate reference components and are loaded only when relevant.
@@ -346,13 +352,15 @@ Machine-readable contract and fixtures:
 - [examples/proposals/](examples/proposals/)
 - [evaluations/README.md](evaluations/README.md)
 
-Static validation:
+Static validation and regressions:
 
 ```bash
+python -m pip install -r requirements-dev.txt
 python scripts/validate_proposals.py
+python -m unittest discover -s tests -v
 ```
 
-This checks proposal/example consistency and local links. It is not a behavioral evaluation of the protocols.
+Validation applies the Draft 7 JSON Schema to every published fixture and then applies cross-field semantic rules. CI runs the same commands on pull requests and the workstream branch. These checks establish contract consistency only; they are not behavioral evaluations of the protocols.
 
 
 ---
