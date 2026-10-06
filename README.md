@@ -1,3 +1,18 @@
+<!-- cognous-banner:start -->
+```text
+──────────────────────────────────────────────────
+   __________  _______   ______  __  _______
+  / ____/ __ \/ ____/ | / / __ \/ / / / ___/
+ / /   / / / / / __/  |/ / / / / / / /\__ \
+/ /___/ /_/ / /_/ / /|  / /_/ / /_/ /___/ /
+\____/\____/\____/_/ |_/\____/\____//____/
+              RESEARCH INTELLIGENCE
+       g o v e r n e d   b y   d e s i g n
+  github.com/cogno-us/cognous-open-control-stack
+──────────────────────────────────────────────────
+```
+<!-- cognous-banner:end -->
+
 # Research Intelligence Protocol v1.0
 
 **A portable research-intelligence workflow for disciplined discovery and cross-domain structural abstraction.**
