@@ -318,6 +318,32 @@ Model behavior can vary with model version, host instructions, available tools, 
 
 Use the protocol to improve the structure and inspectability of research work, then verify consequential claims against appropriate evidence.
 
+
+## Optional downstream proposal handoff
+
+Research Intelligence remains standalone. When a user or downstream system explicitly needs a traceable export, outputs may be represented with the optional **Research Intelligence → Index Proposal Handoff Profile v1.0**.
+
+See **[docs/INDEX_HANDOFF_PROFILE.md](docs/INDEX_HANDOFF_PROFILE.md)**.
+
+The profile preserves source references, uncertainty, competing hypotheses, contradictory evidence, experiment execution status and actual results, abstraction/transfer limits, lineage, and explicit missing information. Every exported object remains `proposed_unaccepted`.
+
+The profile does **not** make The Index a dependency, does not submit blockchain transactions, and does not treat signatures, commitments, or Research Intelligence support labels as factual truth or recipient acceptance.
+
+Machine-readable contract and fixtures:
+
+- [schemas/research-intelligence-proposal-v1.schema.json](schemas/research-intelligence-proposal-v1.schema.json)
+- [examples/proposals/](examples/proposals/)
+- [evaluations/README.md](evaluations/README.md)
+
+Static validation:
+
+```bash
+python scripts/validate_proposals.py
+```
+
+This checks proposal/example consistency and local links. It is not a behavioral evaluation of the protocols.
+
+
 ---
 
 **Research Intelligence Protocol v1.0**  

@@ -1,0 +1,50 @@
+{
+  "profile_version": "research-intelligence-proposal/1.0",
+  "proposal_id": "rip:proposal:v1:fixture:unexecuted-experiment",
+  "component_origin": "discovery",
+  "proposal_kind": "experiment",
+  "handoff_state": "proposed_unaccepted",
+  "epistemic_mode": "candidate",
+  "statement": {
+    "text": "Run a controlled synthetic test varying cache pressure while holding request volume constant."
+  },
+  "sources": [
+    {
+      "source_ref": "synthetic://fixture/observation-set-3",
+      "passage": "Failures co-occurred with high request volume and elevated cache pressure.",
+      "role": "primary"
+    }
+  ],
+  "uncertainty": {
+    "status": "stated",
+    "description": "The experiment has not been executed."
+  },
+  "assumptions": [
+    "Request volume can be held constant in the synthetic test environment."
+  ],
+  "competing_hypotheses": [
+    "Cache pressure contributes causally to failure.",
+    "Cache pressure is merely correlated with another factor."
+  ],
+  "contradictory_evidence": [],
+  "experiment": {
+    "status": "unexecuted",
+    "description": "Vary cache pressure across controlled levels with request volume fixed.",
+    "result_status": "none",
+    "results": []
+  },
+  "abstraction": null,
+  "lineage": {
+    "derived_from": [
+      "synthetic://fixture/observation-set-3"
+    ],
+    "revises": [],
+    "supersedes": []
+  },
+  "missing_information": [
+    {
+      "field": "experiment.results",
+      "reason": "The proposed experiment has not been executed; no result exists."
+    }
+  ]
+}

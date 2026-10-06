@@ -1,0 +1,61 @@
+{
+  "profile_version": "research-intelligence-proposal/1.0",
+  "proposal_id": "rip:proposal:v1:fixture:rejected-analogy",
+  "component_origin": "aoa",
+  "proposal_kind": "transfer_hypothesis",
+  "handoff_state": "proposed_unaccepted",
+  "epistemic_mode": "rejected",
+  "statement": {
+    "text": "A queue-balancing pattern from the source domain transfers as a functional equivalent to the target domain."
+  },
+  "sources": [
+    {
+      "source_ref": "synthetic://fixture/source-system-A",
+      "passage": "Load is redistributed among interchangeable workers when one worker is saturated.",
+      "role": "primary"
+    },
+    {
+      "source_ref": "synthetic://fixture/target-system-B",
+      "passage": "Each target worker owns non-transferable state and cannot hand work to another worker.",
+      "role": "contradicting"
+    }
+  ],
+  "uncertainty": {
+    "status": "stated",
+    "description": "Other narrower relational correspondences were not evaluated in this fixture."
+  },
+  "assumptions": [
+    "Transfer requires workers in the target domain to be substitutable during redistribution."
+  ],
+  "competing_hypotheses": [
+    "Only a surface or relational analogy transfers; functional equivalence does not."
+  ],
+  "contradictory_evidence": [
+    "Target workers own non-transferable state."
+  ],
+  "experiment": null,
+  "abstraction": {
+    "abstraction_level": "E0",
+    "source_domain": "synthetic distributed queue",
+    "target_domain": "synthetic stateful workflow",
+    "transfer_assumptions": [
+      "Workers are substitutable."
+    ],
+    "transfer_limits": [
+      "State ownership prevents redistribution."
+    ],
+    "counterexamples": [
+      "A target worker with non-transferable state cannot be replaced by another worker without loss of continuity."
+    ],
+    "disposition": "rejected"
+  },
+  "lineage": {
+    "derived_from": [
+      "synthetic://fixture/source-system-A",
+      "synthetic://fixture/target-system-B"
+    ],
+    "revises": [],
+    "supersedes": []
+  },
+  "missing_information": []
+}
