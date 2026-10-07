@@ -86,6 +86,16 @@ See [LICENSE](LICENSE) and [attribution](NOTICE) for the existing terms and thir
 
 ---
 
+## Bibliography
+
+Selected external sources from the October 2026 research review. These inform evaluation questions; they do not establish Cognous implementation, adoption, conformance or production qualification.
+
+- [John W. Creswell and J. David Creswell. *Research Design: Qualitative, Quantitative, and Mixed Methods Approaches*, fifth edition. SAGE (2018)](https://edge.sagepub.com/creswellrd5e). Research-methods reference for explicit questions, comparison designs and interpretation limits.
+- [Siddharth Gollapudi, Nilesh Gupta, Prasann Singhal and Sewon Min. *Can Language Models Actually Retrieve In-Context? Drowning in Documents at Million Token Scale*. arXiv:2607.01538v1 (2026)](https://arxiv.org/abs/2607.01538v1). Experimental retrieval research; useful context for testing source retrieval, not evidence of authorization correctness.
+- [Mick Yang et al. *AI Epistemic Risks: Emerging Mechanisms & Evidence* (2026)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6873005). Research synthesis on persuasion, cognitive offloading and feedback loops; context for evidence quality and independent judgment.
+
+See the [research bibliography](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/research-bibliography.md) for review scope and source-verification limits.
+
 ## Cognous stack components
 
 [Stack hub](https://github.com/cogno-us/cognous-open-control-stack) · [Selected pins](https://github.com/cogno-us/cognous-open-control-stack/blob/main/component-lock.json) · [Evidence and limits](https://github.com/cogno-us/cognous-open-control-stack/blob/main/docs/release-status.md)
