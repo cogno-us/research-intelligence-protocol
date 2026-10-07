@@ -100,7 +100,7 @@ AoA must not convert a Discovery observation into a stronger factual claim merel
 
 ## 4. Current Index mapping inspected read-only
 
-Mapping baseline: `cogno-us/the-index` at commit `d5e45d275cb301d9684b543e93b05997991d1cf2`.
+Mapping baseline: `cogno-us/cognous-evidence-registry` at commit `d5e45d275cb301d9684b543e93b05997991d1cf2`.
 
 This profile does **not** claim direct compatibility with a deployed Index receiver. It records an informative mapping against the interfaces present at that commit.
 
