@@ -1,1 +1,2 @@
-jsonschema>=4.23,<5
+# Local tooling shares the reviewed CI lock.
+-r requirements-dev.lock
