@@ -135,5 +135,36 @@ class SemanticRegressionTests(unittest.TestCase):
             vp.validate_semantics(proposal)
 
 
+class DirectSemanticMalformedInputTests(unittest.TestCase):
+    """validate_semantics must fail closed with ProposalValidationError on schema-invalid input."""
+
+    def setUp(self):
+        self.base = load_fixture("unexecuted-experiment.json")
+
+    def assertSemanticsRejects(self, proposal):
+        with self.assertRaises(vp.ProposalValidationError):
+            vp.validate_semantics(proposal)
+
+    def test_unknown_component_origin(self):
+        proposal = copy.deepcopy(self.base)
+        proposal["component_origin"] = "unknown-origin"
+        self.assertSemanticsRejects(proposal)
+
+    def test_missing_experiment(self):
+        proposal = copy.deepcopy(self.base)
+        del proposal["experiment"]
+        self.assertSemanticsRejects(proposal)
+
+    def test_string_experiment(self):
+        proposal = copy.deepcopy(self.base)
+        proposal["experiment"] = "not an object"
+        self.assertSemanticsRejects(proposal)
+
+    def test_list_component_origin(self):
+        proposal = copy.deepcopy(self.base)
+        proposal["component_origin"] = ["discovery"]
+        self.assertSemanticsRejects(proposal)
+
+
 if __name__ == "__main__":
     unittest.main()

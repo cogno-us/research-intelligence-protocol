@@ -44,8 +44,13 @@ def validate_schema(proposal: dict, schema: dict | None = None) -> None:
         raise ProposalValidationError(f"JSON Schema validation failed: {details}")
 
 
-def validate_semantics(proposal: dict) -> None:
-    """Enforce profile invariants that require cross-field semantic interpretation."""
+def validate_semantics(proposal: dict, schema: dict | None = None) -> None:
+    """Enforce profile invariants that require cross-field semantic interpretation.
+
+    Schema validation runs first so that schema-invalid input fails closed with
+    ProposalValidationError instead of KeyError/TypeError when called directly.
+    """
+    validate_schema(proposal, schema)
     origin = proposal["component_origin"]
     kind = proposal["proposal_kind"]
 
@@ -97,8 +102,7 @@ def validate_semantics(proposal: dict) -> None:
 def validate_proposal(proposal: dict, source: str | Path = "<proposal>", schema: dict | None = None) -> None:
     """Validate one proposal against both JSON Schema and semantic rules."""
     try:
-        validate_schema(proposal, schema)
-        validate_semantics(proposal)
+        validate_semantics(proposal, schema)
     except ProposalValidationError as exc:
         raise ProposalValidationError(f"{source}: {exc}") from exc
 
